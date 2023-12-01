@@ -25,7 +25,7 @@ def part_two(input_data: str):
 
     answer = 0
 
-    vals = {
+    text_to_digit_mappings = {
         "one": "1",
         "two": "2",
         "three": "3",
@@ -40,9 +40,9 @@ def part_two(input_data: str):
 
     for line in input_data:
         words = re.findall(
-            "(?=(" + "|".join(vals.keys()) + "|\\d))", line)
+            "(?=(" + "|".join(text_to_digit_mappings.keys()) + "|\\d))", line)
 
-        answer += int("".join([d if d.isdigit() else vals[d]
+        answer += int("".join([d if d.isdigit() else text_to_digit_mappings[d]
                                for d in [words[0], words[-1]]]))
 
     submit(answer, part="b", year=YEAR, day=DAY)
